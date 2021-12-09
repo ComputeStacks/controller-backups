@@ -2,6 +2,8 @@
 
 This is a cron job that will automatically backup the controller database, retain a fixed number of backups, and optionally sync using rclone. 
 
+This will only backup the database, please be sure to separately take a backup of the `/etc/default/computestacks` file. This is only generated once during installation and will not change. 
+
 ## Installation
 
 ### Install files and dependencies
