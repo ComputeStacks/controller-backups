@@ -18,12 +18,13 @@ if [ ! -d $DB_BACKUPS_PATH ]; then
 fi
 
 if [ ! -z "$LOCAL_BACKUPS_TO_KEEP" -a "$LOCAL_BACKUPS_TO_KEEP" != " " ]; then
+  echo "Keeping latest ${LOCAL_BACKUPS_TO_KEEP} backups"
+else
   echo "Missing LOCAL_BACKUPS_TO_KEEP"
   exit 1
 fi
 
 cstacks database-backup \
-  && echo "Keeping latest ${LOCAL_BACKUPS_TO_KEEP} backups" \
   && ls -dt $DB_BACKUPS_PATH/* | tail -n +$LOCAL_BACKUPS_TO_KEEP  | xargs rm -rf
 
 if [ ! -z "$RCLONE_PROFILE" -a "$RCLONE_PROFILE" != " " ] && [ ! -z "$RCLONE_REMOTE_PATH" -a "$RCLONE_REMOTE_PATH" != " " ]; then
