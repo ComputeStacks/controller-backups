@@ -9,7 +9,7 @@ This is a cron job that will automatically backup the controller database, retai
 This script will install our two scripts, and rclone.
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ComputeStacks/controller-backups/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ComputeStacks/controller-backups/main/install.sh)"
 ```
 
 ### Configure rclone
