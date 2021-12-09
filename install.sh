@@ -4,24 +4,19 @@
 
 set -e
 
-apt-get update && apt-get -y install unzip man-db
+apt-get update && apt-get -y install unzip
 
 # Cleanup previous versions
 if [ -f /usr/local/bin/rclone ]; then
   rm /usr/local/bin/rclone
 fi
-if [ -f /usr/local/share/man/man1/rclone.1 ]; then
-  rm /usr/local/share/man/man1/rclone.1
-fi
 
 cd /tmp \
   && curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip \
-  && unzip rclone-current-linux-amd64.zip
+  && unzip rclone-current-linux-amd64.zip \
   && cd rclone-*-linux-amd64 \
   ; \
   mv rclone /usr/local/bin/ && chmod 655 /usr/local/bin/rclone \
-  && mkdir -p /usr/local/share/man/man1 && mv rclone.1 /usr/local/share/man/man1/ \
-  && mandb  \
   && cd ~ \
   ; \
   rm -rf /tmp/rclone* \
