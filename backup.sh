@@ -24,7 +24,7 @@ else
   exit 1
 fi
 
-cstacks database-backup \
+/usr/local/bin/cstacks database-backup \
   && ls -dt $DB_BACKUPS_PATH/* | tail -n +$LOCAL_BACKUPS_TO_KEEP  | xargs rm -rf
 
 if [ ! -z "$RCLONE_PROFILE" -a "$RCLONE_PROFILE" != " " ] && [ ! -z "$RCLONE_REMOTE_PATH" -a "$RCLONE_REMOTE_PATH" != " " ]; then

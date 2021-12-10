@@ -155,7 +155,7 @@ exit_on_lock() {
     # it's syncing time!
     echo "🏁 starting rclone sync ($src -> $dest)" | format_output
     start_time="$(date +%s)"
-    rclone sync "$src" "$dest" -vv --log-file "$log_file" --transfers $RCLONE_TRANSFERS
+    /usr/local/bin/rclone sync "$src" "$dest" -vv --log-file "$log_file" --transfers $RCLONE_TRANSFERS
 
     # finato
     duration="$(display_time_difference "$start_time")"
