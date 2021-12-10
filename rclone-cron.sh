@@ -61,7 +61,7 @@ RCLONE_EXCLUDE_FILE="$(dirname "$0")/exclude-file.txt" # read file exclusion pat
 RCLONE_EXCLUDE_IF_PRESENT=".rclone-ignore" # exclude directories if this filename is present
 RCLONE_BWLIMIT="08:00,2M 00:00,off" # 2MB/s bandwidth limit between 8am and midnight
 RCLONE_MIN_AGE=15m # skip sync for files created in the last 15 minutes
-RCLONE_TRANSFERS=4 # number of file transfers to run in parallel
+RCLONE_TRANSFERS=8 # number of file transfers to run in parallel
 RCLONE_CHECKERS=8 # number of checkers to run in parallel
 RCLONE_DELETE_EXCLUDED=true # delete files on dest excluded from sync
 RCLONE_DRIVE_USE_TRASH=true # send all files to the trash when deleting files (Google Drive only)
@@ -155,7 +155,7 @@ exit_on_lock() {
     # it's syncing time!
     echo "🏁 starting rclone sync ($src -> $dest)" | format_output
     start_time="$(date +%s)"
-    rclone sync "$src" "$dest" -vv --log-file "$log_file"
+    rclone sync "$src" "$dest" -vv --log-file "$log_file" --transfers $RCLONE_TRANSFERS
 
     # finato
     duration="$(display_time_difference "$start_time")"
